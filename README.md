@@ -21,8 +21,6 @@ const App = () => {
   const handleChangeText = (e) => {
     setText(e.target.value)
   }
-
-  console.log(text)
   
   return (
     <>
