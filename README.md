@@ -59,7 +59,7 @@ const MyList = ({datas}) => {
   )
 }
 
-const App =() => {
+const App = () => {
   const [datas, setDatas] = useState(['hello', 'hola', 'bonjour'])
 
   const addData = () => {
@@ -69,10 +69,10 @@ const App =() => {
   }
 
   return (
-    <div className="App">
+    <>
       <button onClick={addData}>add</button>
       <MyList datas={datas} />
-    </div>
+    </>
   )
 }
 ```
