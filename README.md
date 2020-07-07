@@ -44,7 +44,7 @@ const App = () => {
 
 ---
 
-###### 1. MyList는 add버튼 클릭시에 렌더링이 왜 *안* 되나요?
+###### 2. MyList는 add버튼 클릭시에 렌더링이 왜 *안* 되나요?
 
 ```javascript
 const MyList = ({datas}) => {
@@ -81,8 +81,8 @@ const App =() => {
 <p>
 
 #### datas는 사실 바뀌지 않았습니다.
-`datas`의 push를 한다고 해서 `datas`의 주소값이 바뀌진 않습니다. React는 주소값이 바뀌는 걸 통해 변화를 감지합니다.<sup><a href="#1-myinput은-text입력시마다-왜-계속-렌더링-되나요">\*1번 문제 참고</a></sup> 즉, `datas`가 바뀌지 않은 걸로 판단한 리액트가 똑똑하게 렌더링하지 않은 겁니다.<br>
-이 문제를 해결하기 위해선 [불변성](https://www.google.com/search?q=Immutability&oq=Immutability&aqs=chrome..69i57j69i60j69i61.242j0j7&sourceid=chrome&ie=UTF-8)에 대해 알아야합니다. [전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)은 불변성을 지키는 똑똑한 방법입니다.
+`datas`에 push를 해도 `datas`의 주소값이 바뀌진 않습니다. 하지만, React는 주소값이 바뀌는 걸 통해 변화를 감지합니다.<sup><a href="#1-myinput은-text입력시마다-왜-계속-렌더링-되나요">\*1번 문제 참고</a></sup> 즉, 리액트는 `datas`가 바뀌지 않은 걸로 판단하여 똑똑하게 렌더링하지 않은 겁니다.<br>
+이 문제를 해결하기 위해선 [불변성](https://www.google.com/search?q=Immutability&oq=Immutability&aqs=chrome..69i57j69i60j69i61.242j0j7&sourceid=chrome&ie=UTF-8)에 대해 알아야합니다. 또, [전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)은 불변성을 지키는 똑똑한 방법입니다.
 
 </p>
 </details>
