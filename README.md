@@ -80,9 +80,63 @@ const App = () => {
 <details><summary><b>정답</b></summary>
 <p>
 
-#### datas는 사실 바뀌지 않았습니다.
+#### `datas`는 사실 바뀌지 않았습니다.
 `datas`에 push를 해도 `datas`의 주소값이 바뀌진 않습니다. 하지만, React는 주소값이 바뀌는 걸 통해 변화를 감지합니다.<sup><a href="#1-myinput은-text입력시마다-왜-계속-렌더링-되나요">\*1번 문제 참고</a></sup> 즉, 리액트는 `datas`가 바뀌지 않은 걸로 판단하여 똑똑하게 렌더링하지 않은 겁니다.<br>
 이 문제를 해결하기 위해선 [불변성](https://www.google.com/search?q=Immutability&oq=Immutability&aqs=chrome..69i57j69i60j69i61.242j0j7&sourceid=chrome&ie=UTF-8)에 대해 알아야합니다. 또, [전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)은 불변성을 지키는 똑똑한 방법입니다.
+
+</p>
+</details>
+
+---
+
+###### 3. MyTodoList의 checkbox는 왜 움지이지 않나요?
+![3](https://user-images.githubusercontent.com/42797995/87057993-80a2bb80-c242-11ea-89ae-87797093cdc8.gif)
+
+```javascript
+const MyTodoList = (props) => {
+  const {todos} = props
+
+  return (
+    <>
+      {todos.map((todo, index) => (
+        <li key={index}>
+          {todo.name}
+          <input type="checkbox" />
+        </li>
+      ))}
+    </>
+  )
+}
+
+const App = () => {
+  const [todos, setTodos] = useState([
+    { name: 'homework' },
+    { name: 'washing dishes' },
+    { name: 'make todoList' },
+  ])
+
+  const handleClick = () => {
+    setTodos([...todos].reverse())
+  }
+
+  return (
+    <>
+      <button onClick={handleClick}>I don't care, just shake!</button>
+      <ul>
+        <MyTodoList todos={todos} />
+      </ul>
+    </>
+  )
+}
+```
+
+<details><summary><b>정답</b></summary>
+<p>
+
+#### 리스트 렌더링에서 인덱스를 `key`로 지정하지 마세요.
+
+React는 리스트 렌더링에서 `key`로 어떤 항목을 변경, 추가 또는 삭제할지 판단합니다. index를 key로 사용한다면, 우리가 배열을 `reverse`했을 때에 React는 이렇게 판단합니다. 아하! `homework`가 `make todoList`라는 문자열로 바뀌었구나? 그럼 문자열만 바꿔주면 되겠다!<br/>
+이 문제를 해결하기 위해 `key`에 `id`를 넘겨주세요. 고유한 `id`값을 넘겨주면 원하는 대로 작동할 것입니다. 읽어보면 좋은 글로는, [왜 key가 필요한가에 대한 더 자세한 설명](https://ko.reactjs.org/docs/reconciliation.html#recursing-on-children) 그리고 [인덱스를 key로 사용할 경우 부정적인 영향에 대한 상세 설명](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)이 있습니다.
 
 </p>
 </details>
