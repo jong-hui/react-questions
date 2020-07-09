@@ -131,10 +131,10 @@ const App = () => {
 <details><summary><b>정답</b></summary>
 <p>
 
-#### 리스트 렌더링에서 인덱스를 `key`로 지정하지 마세요.
+#### 리스트 렌더링에서 `인덱스`를 `key`로 지정하지 마세요.
 
 React는 리스트 렌더링에서 `key`로 어떤 항목을 변경, 추가 또는 삭제할지 판단합니다. index를 key로 사용한다면, 우리가 배열을 `reverse`했을 때에 React는 이렇게 판단합니다. 아하! `homework`가 `make todoList`라는 문자열로 바뀌었구나? 그럼 문자열만 바꿔주면 되겠다!<br/>
-이 문제를 해결하기 위해 `key`에 `id`를 넘겨주세요. 고유한 `id`값을 넘겨주면 원하는 대로 작동할 것입니다. 읽어보면 좋은 글로는, [왜 key가 필요한가에 대한 더 자세한 설명](https://ko.reactjs.org/docs/reconciliation.html#recursing-on-children) 그리고 [인덱스를 key로 사용할 경우 부정적인 영향에 대한 상세 설명](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)이 있습니다.
+이 문제를 해결하기 위해 `key`에 `id`를 넘겨주세요. 고유한 `id`값을 넘겨주면 원하는 대로 작동할 것 입니다. 읽어보면 좋은 글로는, [왜 key가 필요한가에 대한 더 자세한 설명](https://ko.reactjs.org/docs/reconciliation.html#recursing-on-children) 그리고 [인덱스를 key로 사용할 경우 부정적인 영향에 대한 상세 설명](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)이 있습니다.
 
 </p>
 </details>
