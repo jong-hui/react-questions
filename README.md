@@ -90,12 +90,10 @@ const App = () => {
 ---
 
 ###### 3. MyTodoList의 checkbox는 왜 움직이지 않나요?
-![3](https://user-images.githubusercontent.com/42797995/87057993-80a2bb80-c242-11ea-89ae-87797093cdc8.gif)
+![3](https://user-images.githubusercontent.com/42797995/87059853-c5c7ed00-c244-11ea-9c2d-ac199bc50fee.gif)
 
 ```javascript
-const MyTodoList = (props) => {
-  const {todos} = props
-
+const MyTodoList = ({todos}) => {
   return (
     <>
       {todos.map((todo, index) => (
