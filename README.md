@@ -172,7 +172,7 @@ const App = () => {
 
 #### `조건문` 안에 `Hook(use~)`을 사용하지 마세요!
 
-정확한 의미로는, **무조건** 함수의 최상위에서만 `Hook`을 사용해야만 합니다. 이는 `React`가 `Hook`의 상태를 올바르게 유지할 수 있게 도와줍니다. 더 설명하자면, React는 `Hook`이 **실행 순서**에 의존해서 `state`(이는 `useEffect`의 함수도 될 수 있습니다)를 저장합니다.<br/>
+정확한 의미로는, **무조건** 함수의 최상위에서만 `Hook`을 사용해야만 합니다. 이는 `React`가 `Hook`의 상태를 올바르게 유지할 수 있게 도와줍니다. 더 설명하자면, React는 `Hook`의 **실행 순서**에 의존해서 `state`(어떨땐 `useEffect`의 callback)를 저장합니다.<br/>
 예를 들어, 위의 예제에서는(조건문을 빼면), `["is the title", () => { console... }, "is the content", () => { console... }]`의 상태로 React는 저장합니다. 만약 조건문의 조건이 `false`가 되어 `Hook`의 실행 순서가 변한다면 어떨까요? `state`와 `Hook`을 연결시켜주지 못해 버그가 발생합니다.<br>
 *이 문제를 해결하려면* 조건문을 `useEffect` 안으로 넣으세요! 오직 그것 뿐입니다. 더 중요한 건, 모든 `Hook`은 최상위에서만 호출하세요! 읽어보면 좋은 글로는, [Hook의 첫번째 규칙](https://itnext.io/the-first-rule-of-react-hooks-in-plain-english-1e0d5ae32009) 그리고 [Hook의 규칙](https://ko.reactjs.org/docs/hooks-rules.html#explanation)이 있습니다.
 
