@@ -141,30 +141,9 @@ React는 리스트 렌더링에서 `key`로 어떤 항목을 변경, 추가 또�
 
 ---
 
-###### 4. MyProduct는 왜 에러가 나나요?
-![3](https://user-images.githubusercontent.com/42797995/87059853-c5c7ed00-c244-11ea-9c2d-ac199bc50fee.gif)
+###### 4. 조건문 안에 Hook을 쓰면 왜 에러가 나나요?
 
 ```javascript
-const MyProduct = ({ product, isTimeSale }) => {
-  const [salePercent, setSalePercent] = useState(0)
-
-  if (isTimeSale) {
-    useEffect(() => {
-      setSalePercent(getSalePercent(product.id))
-    }, [])
-  }
-
-  return (
-    <>
-      <li>
-        {product.name}
-        {salePercent > 0 ?`${salePercent}% sale!!` : ''}
-      </li>
-    </>
-  )
-}
-
-
 const App = () => {
   const [title, setTitle] = useState("is the title")
 
@@ -191,7 +170,7 @@ const App = () => {
 <details><summary><b>정답</b></summary>
 <p>
 
-#### `조건문` 안에 `Hook(use~)`를 사용하지 마세요!
+#### `조건문` 안에 `Hook(use~)`을 사용하지 마세요!
 
 정확한 의미로는, **무조건** 함수의 최상위에서만 `Hook`을 사용해야만 합니다. 이는 `React`가 `Hook`의 상태를 올바르게 유지할 수 있게 도와줍니다. 더 설명하자면, React는 `Hook`이 **실행 순서**에 의존해서 `state`(이는 `useEffect`의 함수도 될 수 있습니다)를 저장합니다.<br/>
 예를 들어, 위의 예제에서는(조건문을 빼면), `["is the title", () => { console... }, "is the content", () => { console... }]`의 상태로 React는 저장합니다. 만약 조건문의 조건이 `false`가 되어 `Hook`의 실행 순서가 변한다면 어떨까요? `state`와 `Hook`을 연결시켜주지 못해 버그가 발생합니다.<br>
