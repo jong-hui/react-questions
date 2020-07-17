@@ -134,7 +134,7 @@ const App = () => {
 #### 리스트 렌더링에서 `인덱스`를 `key`로 지정하지 마세요.
 
 React는 리스트 렌더링에서 `key`로 어떤 항목을 변경, 추가 또는 삭제할지 판단합니다. index를 key로 사용한다면, 우리가 배열을 `reverse`했을 때에 React는 이렇게 판단합니다. 아하! `homework`가 `make todoList`라는 문자열로 바뀌었구나? 그럼 문자열만 바꿔주면 되겠다!<br/>
-이 문제를 해결하기 위해 `key`에 `id`를 넘겨주세요. 고유한 `id`값을 넘겨주면 원하는 대로 작동할 것 입니다. 읽어보면 좋은 글로는, [왜 key가 필요한가에 대한 더 자세한 설명](https://ko.reactjs.org/docs/reconciliation.html#recursing-on-children) 그리고 [인덱스를 key로 사용할 경우 부정적인 영향에 대한 상세 설명](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)이 있습니다.
+*이 문제를 해결하기 위해* `key`에 `id`를 넘겨주세요. 고유한 `id`값을 넘겨주면 원하는 대로 작동할 것 입니다. 읽어보면 좋은 글로는, [왜 key가 필요한가에 대한 더 자세한 설명](https://ko.reactjs.org/docs/reconciliation.html#recursing-on-children) 그리고 [인덱스를 key로 사용할 경우 부정적인 영향에 대한 상세 설명](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)이 있습니다.
 
 </p>
 </details>
@@ -175,6 +175,42 @@ const App = () => {
 정확한 의미로는, **무조건** 함수의 최상위에서만 `Hook`을 사용해야만 합니다. 이는 `React`가 `Hook`의 상태를 올바르게 유지할 수 있게 도와줍니다. 더 설명하자면, React는 `Hook`의 **실행 순서**에 의존해서 `state`(어떨땐 `useEffect`의 callback)를 저장합니다.<br/>
 예를 들어, 위의 예제에서는(조건문을 빼면), `["is the title", () => { console... }, "is the content", () => { console... }]`의 상태로 React는 저장합니다. 만약 조건문의 조건이 `false`가 되어 `Hook`의 실행 순서가 변한다면 어떨까요? `state`와 `Hook`을 연결시켜주지 못해 버그가 발생합니다.<br>
 *이 문제를 해결하려면* 조건문을 `useEffect` 안으로 넣으세요! 오직 그것 뿐입니다. 더 중요한 건, 모든 `Hook`은 최상위에서만 호출하세요! 읽어보면 좋은 글로는, [Hook의 첫번째 규칙](https://itnext.io/the-first-rule-of-react-hooks-in-plain-english-1e0d5ae32009) 그리고 [Hook의 규칙](https://ko.reactjs.org/docs/hooks-rules.html#explanation)이 있습니다.
+
+</p>
+</details>
+
+---
+
+###### 5. `myMessage` 컴포넌트는 왜 에러가 나나요?
+![5](https://user-images.githubusercontent.com/42797995/87776204-5ebcc080-c862-11ea-82e0-256c868c9f7b.png)
+
+```javascript
+const myMessage = () => {
+  return (
+    <p>
+      Hi there, is my message
+    </p>
+  )
+}
+
+const App = () => {
+  return (
+    <div>
+      <myMessage></myMessage>
+    </div>
+  )
+}
+```
+
+<details><summary><b>정답</b></summary>
+<p>
+
+#### 컴포넌트의 첫 글자를 `소문자`로 작성하지 마세요!
+
+만약 컴포넌트의 첫 글자를 소문자로 작성한다면, 리액트는 해당 컴포넌트를 `built-in` 요소(e.g. div, p, span)로 판단합니다.<br>
+`Fun Fact`: 당신이 `div`라는 이름을 가진 아주 멋진 컴포넌트를 만들었어도, 리액트는 이 컴포넌트를 `built-in` 요소로 판단해서 그저 빈 `div`태그를 출력해줄 뿐입니다. 이 경우, 리액트는 어떠한 에러 혹은 경고를 개발자에게 알려주지 않습니다.<br>
+*이 문제를 해결하려면* 컴포넌트의 첫 글자를 대문자로 작성하세요! 오직 그것 뿐입니다. 읽어보면 좋은 글로는, [케이스 네이밍 컨벤션](http://guswnsxodlf.github.io/camelcase-pascalcase-snakecase)이 있습니다.
+
 
 </p>
 </details>
